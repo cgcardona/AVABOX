@@ -1,7 +1,7 @@
 import { IConfig } from "./interfaces"
 import axios from 'axios';
 
-export class XChain {
+export class Admin {
   config: IConfig
 
   constructor(config: IConfig = {
@@ -12,22 +12,19 @@ export class XChain {
   }) {
     this.config = config
   }
-
-  async getBalance(address: string) {
-    const response = await axios.post(`${this.config.fullNodeProtocol}://${this.config.fullNodeHost}:${this.config.fullNodePort}/ext/bc/X`, {
+  
+  async getNodeID() {
+    const response = await axios.post(`${this.config.fullNodeProtocol}://${this.config.fullNodeHost}:${this.config.fullNodePort}/ext/admin`, {
       jsonrpc: "2.0",
       id: 3,
-      method: "avm.getBalance",
-      params: {
-        address: address,
-        assetID: "AVA"
-      }
+      method: "admin.getNodeID",
+      params: {}
     }, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
 
-    return response.data.result.balance
+    return response.data.result.nodeID:
   }
 }
