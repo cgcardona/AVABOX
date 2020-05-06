@@ -4,7 +4,7 @@ AVA is an open-source platform for launching highly decentralized applications, 
 
 AVABOX repo is a playground for exploring the AVA platform including the [slopes](https://github.com/ava-labs/slopes) lib.
 
-## Usage
+## Installation
 
 You can drop AVABOX in to your app via `npm` or `yarn` or you can clone the repo and run it locally.
 
@@ -33,10 +33,26 @@ git clone https://github.com/cgcardona/AVABOX.git
 cd AVABOX
 ```
 
-Create a wallet. This creates an AVA wallet located at `./wallet.json`.
+Install the dependencies
 
 ```bash
-ts-node src/create_wallet.ts
+yarn install
+```
+
+Run a script
+
+```bash
+ts-node examples/get_node_id.ts
+```
+
+## Usage
+
+Check out the [examples/](examples/) directory to see how to use AVABOX.
+
+For example to create a basic AVA wallet located at `./wallet.json`.
+
+```bash
+ts-node examples/create_wallet.ts
 wallet.json written successfully.
 
 cat wallet.json
@@ -46,6 +62,10 @@ cat wallet.json
   "chain_address": "X-ErsdCatjgehBa8Ao1LVuZW11WKEL2FeJV"
 }
 ```
+
+## Running your own full node
+
+AVABOX requires a full node. [Here are the steps](https://gist.github.com/cgcardona/4a5c9d0dbe7fdbe6ffce77fa05e9e580) for firing up your own AVA full node.
 
 ## More Info
 
