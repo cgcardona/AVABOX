@@ -1,4 +1,4 @@
-import { AVABOX } from "./AVABOX"
+import { AVABOX } from "../src/AVABOX"
 
 let main = async (): Promise<any> => {
   let config = {
