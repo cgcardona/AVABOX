@@ -25,6 +25,6 @@ export class Admin {
       }
     })
 
-    return response.data.result.nodeID:
+    return response.data.result.nodeID
   }
 }
