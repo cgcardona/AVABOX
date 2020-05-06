@@ -1,13 +1,13 @@
 const config: {
-  networkId: number,
-  fullNodehost: string,
-  fullNodePort: number,
-  fullNodeProtocol: string 
+  networkId: number;
+  fullNodeHost: string;
+  fullNodePort: number;
+  fullNodeProtocol: string;
 } = {
   networkId: 12345,
-  fullNodehost: 'localhost',
+  fullNodeHost: "localhost",
   fullNodePort: 9650,
-  fullNodeProtocol: 'http'
-}
+  fullNodeProtocol: "http"
+};
 
-export default config
+export default config;
