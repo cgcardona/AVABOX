@@ -1,6 +1,6 @@
 {
   "name": "avabox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.ts",
   "repository": "https://github.com/cgcardona/AVABOX",
   "author": "Gabriel Cardona <https://twitter.com/cgcardona>",

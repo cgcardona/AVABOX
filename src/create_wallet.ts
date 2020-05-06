@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import * as slopes from "slopes";
-import config from "./config";
 import { AVABOX } from "./AVABOX"
 import { Wallet } from "./Wallet"
 
