@@ -4,7 +4,19 @@ export class AVABOX {
   constructor() {
   }
 
-  async getBalance(): Promise<any> {
+  getNetworkId(): number {
     return config.networkId
+  }
+
+  getFullNodeHost(): string {
+    return config.fullNodeHost
+  }
+
+  getFullNodePort(): number {
+    return config.fullNodePort
+  }
+
+  getFullNodeProtocol(): string {
+    return config.fullNodeProtocol
   }
 }
