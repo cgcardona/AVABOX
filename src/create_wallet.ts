@@ -15,13 +15,11 @@ const AVM = AVA.AVM();
 
 // Generate a keychain/wallet.
 const my_keychain = AVM.keyChain();
-// console.log('my keychain', my_keychain)
 
 // Generate a new keypair
 const new_address = my_keychain.makeKey();
 console.log("new_address", new_address.toString("hex"));
 const keyPair = my_keychain.getKey(new_address);
-// console.log('keypair', keypair)
 
 // Get the private key for the keypair
 const private_key = keyPair.getPrivateKeyString();
