@@ -1,15 +1,16 @@
-# AVA Sandbox
+# AVABOX
+
 AVA is an open-source platform for launching highly decentralized applications, financial primitives, and interoperable blockchains.
 
-This AVA Sandbox repo is a playground for exploring the AVA platform including the [slopes](https://github.com/ava-labs/slopes) lib.
+AVABOX repo is a playground for exploring the AVA platform including the [slopes](https://github.com/ava-labs/slopes) lib.
 
 ## Usage
 
 First clone the repo
 
 ```bash
-git clone https://github.com/cgcardona/ava_sandbox.git
-cd ava_sandbox
+git clone https://github.com/cgcardona/AVABOX.git
+cd AVABOX
 ```
 
 Create a wallet
