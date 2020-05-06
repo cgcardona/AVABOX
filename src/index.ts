@@ -1,19 +1,24 @@
+import config from './config'
 import { AVABOX } from "./AVABOX"
+import { Wallet } from "./Wallet"
 
 const avabox: AVABOX = new AVABOX()
 
 let main= (): any => {
-  let networkId: number = avabox.getNetworkId();
-  console.log(networkId);
+  console.log(avabox.Wallet)
+  // let wallet: Wallet = avabox.Wallet
 
-  let fullNodeHost: string = avabox.getFullNodeHost();
-  console.log(fullNodeHost);
+  // let networkId: number = avabox.getNetworkId();
+  // console.log(networkId);
 
-  let fullNodePort: number = avabox.getFullNodePort();
-  console.log(fullNodePort);
+  // let fullNodeHost: string = avabox.getFullNodeHost();
+  // console.log(fullNodeHost);
 
-  let fullNodeProtocol: string = avabox.getFullNodeProtocol();
-  console.log(fullNodeProtocol);
+  // let fullNodePort: number = avabox.getFullNodePort();
+  // console.log(fullNodePort);
+
+  // let fullNodeProtocol: string = avabox.getFullNodeProtocol();
+  // console.log(fullNodeProtocol);
 }
 
 main()

@@ -1,4 +1,3 @@
-import config from './config'
 import * as slopes from "slopes";
 import { IConfig } from "./interfaces"
 
@@ -17,19 +16,19 @@ export class Wallet {
     this.avm = this.ava.AVM();
   }
 
-  public getKeychain(): slopes.AVMKeyChain {
-    return this.avm.keyChain();
-  }
+  // public getKeychain(): slopes.AVMKeyChain {
+  //   return this.avm.keyChain();
+  // }
 
-  public getFullNodeHost(): string {
-    return config.fullNodeHost
-  }
+  // public getFullNodeHost(): string {
+  //   return this.config.fullNodeHost
+  // }
 
-  public getFullNodePort(): number {
-    return config.fullNodePort
-  }
+  // public getFullNodePort(): number {
+  //   return this.config.fullNodePort
+  // }
 
-  public getFullNodeProtocol(): string {
-    return config.fullNodeProtocol
-  }
+  // public getFullNodeProtocol(): string {
+  //   return this.config.fullNodeProtocol
+  // }
 }

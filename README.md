@@ -6,6 +6,26 @@ AVABOX repo is a playground for exploring the AVA platform including the [slopes
 
 ## Usage
 
+You can drop AVABOX in to your app via `npm` or `yarn` or you can clone the repo and run it locally.
+
+### NPM or Yarn
+
+AVABOX is available as a [package on npm](https://www.npmjs.com/package/avabox). You can drop it in to your app with npm or yarn.
+
+With `npm`
+
+```bash
+npm install avabox --save
+```
+
+With `yarn`
+
+```bash
+yarn add avabox
+```
+
+### Localhost
+
 First clone the repo
 
 ```bash
