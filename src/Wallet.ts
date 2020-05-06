@@ -1,11 +1,12 @@
 import config from './config'
 import * as slopes from "slopes";
+import { IConfig } from "./interfaces"
 
 export class Wallet {
   public ava: slopes.Slopes
   public avm: slopes.AVM
 
-  constructor(config) {
+  constructor(config: IConfig) {
     this.ava = new slopes.Slopes(
       config.fullNodeHost,
       config.fullNodePort,
@@ -16,19 +17,19 @@ export class Wallet {
     this.avm = this.ava.AVM();
   }
 
-  keychain(): slopes.AVMKeyChain {
+  public getKeychain(): slopes.AVMKeyChain {
     return this.avm.keyChain();
   }
 
-  getFullNodeHost(): string {
+  public getFullNodeHost(): string {
     return config.fullNodeHost
   }
 
-  getFullNodePort(): number {
+  public getFullNodePort(): number {
     return config.fullNodePort
   }
 
-  getFullNodeProtocol(): string {
+  public getFullNodeProtocol(): string {
     return config.fullNodeProtocol
   }
 }
