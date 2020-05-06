@@ -1,22 +1,10 @@
 import config from './config'
+import { Wallet } from "./Wallet"
 
 export class AVABOX {
+  public Wallet: Wallet
+
   constructor() {
-  }
-
-  getNetworkId(): number {
-    return config.networkId
-  }
-
-  getFullNodeHost(): string {
-    return config.fullNodeHost
-  }
-
-  getFullNodePort(): number {
-    return config.fullNodePort
-  }
-
-  getFullNodeProtocol(): string {
-    return config.fullNodeProtocol
+    this.Wallet = new Wallet(config)
   }
 }
