@@ -1,2 +1,6 @@
 export * from "./src/AVABOX"
+export * from "./src/Admin"
+export * from "./src/CChain"
+export * from "./src/PChain"
+export * from "./src/XChain"
 export * from "./src/Wallet"
