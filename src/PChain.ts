@@ -4,6 +4,5 @@ import { IConfig } from "./interfaces"
 export class PChain {
 
   constructor(config: IConfig) {
-    console.log("PChain created!")
   }
 }

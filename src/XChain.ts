@@ -11,7 +11,6 @@ export class XChain {
     fullNodePort: 9650,
     fullNodeProtocol: "http"
   }) {
-    console.log("XChain created!", config)
     this.config = config
   }
 
