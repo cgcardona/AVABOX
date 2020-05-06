@@ -3,7 +3,15 @@ import * as slopes from "slopes";
 import config from "./config";
 
 let output_str: string = "";
-let output_obj: {} = {};
+let output_obj: {
+  private_key: string 
+  public_key: string 
+  chain_address: string
+} = {
+  private_key: "",
+  public_key:  "",
+  chain_address: "",
+};
 
 const AVA: slopes.Slopes = new slopes.Slopes(
   config.fullNodeHost,
