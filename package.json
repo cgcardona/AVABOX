@@ -1,10 +1,10 @@
 {
-  "name": "my-awesome-project",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "repository": "",
-  "author": "",
-  "license": "",
+  "name": "avabox",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "repository": "https://github.com/cgcardona/AVABOX",
+  "author": "Gabriel Cardona <https://twitter.com/cgcardona>",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "test": "jest",
