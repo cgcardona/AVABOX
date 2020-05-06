@@ -1,11 +1,10 @@
-import config from './config'
+import { AVABOX } from "./AVABOX"
 
-export default function add(x: number, y: number, z: number): number {
-  return x + y + z;
+const avabox: AVABOX = new AVABOX()
+
+let main= (): any => {
+  let balance: Promise<number> = avabox.getBalance();
+  console.log(balance)
 }
 
-let getBalance = async(): Promise<any> => {
-  console.log(`---------------------------getBalance, ${config.networkId}`)
-}
-
-getBalance()
+main()
