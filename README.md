@@ -17,6 +17,14 @@ Create a wallet. This creates an AVA wallet located at `./wallet.json`.
 
 ```bash
 ts-node src/create_wallet.ts
+wallet.json written successfully.
+
+cat wallet.json
+{
+  "private_key": "2sVnjPaFRZoYy5NF4UJoGsDNKyTK2MPGDCvFSfgHghbdiVzS1E",
+  "public_key": "8h3duPX9UBqHK5Xo3DnA5xB2DTnfzNddHMctDqM3BaGsHWYW9r",
+  "chain_address": "X-ErsdCatjgehBa8Ao1LVuZW11WKEL2FeJV"
+}
 ```
 
 ## More Info
