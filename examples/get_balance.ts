@@ -9,7 +9,7 @@ let main = async (): Promise<any> => {
 
   }
   const avabox: AVABOX = new AVABOX(config)
-  const XChain: XChain = avabox.XChain
+  const XChain = avabox.XChain
   let address: string =  "X-GMQasdep6PraTrSfSbggcZFKJ3WsHYT17"
   let balance: Promise<number> = await XChain.getBalance(address)
   console.log(balance)
