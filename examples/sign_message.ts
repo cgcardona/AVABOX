@@ -3,9 +3,10 @@ import { Wallet } from '../src/Wallet'
 import { Buffer } from 'buffer/'
 import AVMAPI from 'slopes/typings/src/apis/avm/api'
 import { AVMKeyChain, AVMKeyPair } from 'slopes'
+import { Config } from '../src/interfaces/config_interface'
 
 let main = (): any => {
-  let config = {
+  let config: Config = {
     fullNodeHost: 'ip.of.full.node',
     fullNodePort: 9650,
     fullNodeProtocol: 'http',

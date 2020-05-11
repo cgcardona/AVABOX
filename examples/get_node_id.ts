@@ -1,10 +1,11 @@
-import { AVABOX } from "../src/AVABOX"
+import { AVABOX } from '../src/AVABOX'
+import { Config } from '../src/interfaces/config_interface'
 
 const main = async (): Promise<any> => {
-  const config = {
-    fullNodeHost: "ip.address.of.node",
+  const config: Config = {
+    fullNodeHost: 'ip.address.of.node',
     fullNodePort: 9650,
-    fullNodeProtocol: "http",
+    fullNodeProtocol: 'http',
     networkId: 12345
 
   }

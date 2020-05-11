@@ -1,10 +1,11 @@
-import { AVABOX } from "../src/AVABOX"
+import { AVABOX } from '../src/AVABOX'
+import { Config } from '../src/interfaces/config_interface'
 
-const main = async (): Promise<any> => {
-    const config = {
-    fullNodeHost: "ip.address.of.node",
+let main = async (): Promise<any> => {
+  let config: Config = {
+    fullNodeHost: 'ip.of.full.node',
     fullNodePort: 9650,
-    fullNodeProtocol: "http",
+    fullNodeProtocol: 'http',
     networkId: 2
 
   }
@@ -13,7 +14,7 @@ const main = async (): Promise<any> => {
   const avm = Wallet.avm
   const txid: string =  '2BKo2z3qnMhUNFdD2nkMMGT4iV5QCZwRuBeegyXejbhG1JCp8j'
   const  status = await avm.getTxStatus(txid);
-  // returns one of: "Accepted", "Processing", "Unknown", and "Rejected"
+  // returns one of: 'Accepted', 'Processing', 'Unknown', and 'Rejected'
   console.log(`STATUS: ${status}`)
 }
 
