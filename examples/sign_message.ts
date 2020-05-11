@@ -19,6 +19,10 @@ let main = (): any => {
   const address: Buffer = keychain.makeKey();
   const keypair: AVMKeyPair = keychain.getKey(address);
   const xAddress: string = keypair.getAddressString()
+  console.log(`xAddress: ${xAddress}`)
+  // Example output:
+  // xAddress: X-6WYWcTCf3GRgQZH6gYLiu7hxWVEjvYVdC
+
   const msg: string = `Hello AVA from address ${xAddress}`
   const message: Buffer = Buffer.from(msg);
   console.log(`Message: ${msg}`)
