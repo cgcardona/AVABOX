@@ -13,7 +13,7 @@ export class XChain {
     this.config = config
   }
 
-  async getBalance(address: string, assetId: string) {
+  async getBalance(address: string, assetId: string = 'AVA') {
     const response = await axios.post(`${this.config.fullNodeProtocol}://${this.config.fullNodeHost}:${this.config.fullNodePort}/ext/bc/X`, {
       jsonrpc: "2.0",
       id: 3,

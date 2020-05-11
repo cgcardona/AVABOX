@@ -1,7 +1,7 @@
 import { AVABOX } from "../src/AVABOX"
 
-let main = async (): Promise<any> => {
-  let config = {
+const main = async (): Promise<any> => {
+  const config = {
     fullNodeHost: "ip.address.of.node",
     fullNodePort: 9650,
     fullNodeProtocol: "http",
@@ -10,7 +10,7 @@ let main = async (): Promise<any> => {
   }
   const avabox: AVABOX = new AVABOX(config)
   const Admin = avabox.Admin
-  let nodeId: Promise<string> = await Admin.getNodeID()
+  const nodeId: Promise<string> = await Admin.getNodeID()
   console.log(nodeId)
 }
 
