@@ -15,18 +15,22 @@ let main = (): any => {
   const avabox: AVABOX = new AVABOX(config)
   const Wallet: Wallet = avabox.Wallet
   const avm: AVMAPI = Wallet.avm
-  const myKeychain: AVMKeyChain = avm.keyChain();
-  const newAddress1: Buffer = myKeychain.makeKey();
-  const keypair: AVMKeyPair = myKeychain.getKey(newAddress1);
+  const keychain: AVMKeyChain = avm.keyChain();
+  const address: Buffer = keychain.makeKey();
+  const keypair: AVMKeyPair = keychain.getKey(address);
   const xAddress: string = keypair.getAddressString()
   const msg: string = `Hello AVA from address ${xAddress}`
   const message: Buffer = Buffer.from(msg);
   console.log(`Message: ${msg}`)
+  // Example output:
+  // Message: Hello AVA from address X-6WYWcTCf3GRgQZH6gYLiu7hxWVEjvYVdC
 
   const signature: Buffer = keypair.sign(message);
   const signerPubk: Buffer = keypair.recover(message, signature);
   const isValid: boolean = keypair.verify(message, signature);
   console.log(`isValid: ${isValid}`)
+  // Example output:
+  // true
 }
 
 main()
