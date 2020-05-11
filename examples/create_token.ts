@@ -25,7 +25,7 @@ let main = async (): Promise<any> => {
   let privkey1 = keypair1.getPrivateKeyString()
   console.log(`privkey1: ${privkey1}`)
 
-  let mypk1 = Buffer.from('rZ3nkMoAGqsJdspptRZajHYXUqCxDBX4KDzxf4ukHWUgFq6aL')
+  let mypk1 = Buffer.from('')
   let successful1 = keypair1.importKey(mypk1)
   console.log(`successful1: ${successful1}`)
 
@@ -33,7 +33,7 @@ let main = async (): Promise<any> => {
   let keypair2 = myKeychain.getKey(newAddress2); //returns the keypair class
   let privkey2 = keypair2.getPrivateKeyString()
   console.log(`privkey2: ${privkey2}`)
-  let mypk2 = Buffer.from('3WZEz4PgsSkTFqwZ5wCGXXekZ4dS2AX3NhUzt49x8RbM7tPbU')
+  let mypk2 = Buffer.from('')
   let successful2 = keypair2.importKey(mypk2)
   console.log(`successful2: ${successful2}`)
 
@@ -41,7 +41,7 @@ let main = async (): Promise<any> => {
   let keypair3 = myKeychain.getKey(newAddress3); //returns the keypair class
   let privkey3 = keypair3.getPrivateKeyString()
   console.log(`privkey3: ${privkey3}`)
-  let mypk3 = Buffer.from('oYBm4wgU43Qxgnqz4u4BfEVSDdr1rmVqbuJYX7F5Sdt71MYhd')
+  let mypk3 = Buffer.from('')
   let successful3 = keypair3.importKey(mypk3)
   console.log(`successful3: ${successful3}`)
 
