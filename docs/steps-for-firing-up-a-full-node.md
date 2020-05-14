@@ -8,6 +8,18 @@ These are steps for firing up an AVA full node on [Digital Ocean](https://www.di
 
 `ssh` into a Digital Ocean Ubuntu box
 
+### Requirements
+
+#### OS
+
+Ubuntu 18.04.3 (LTS) x64
+
+#### Hardware
+
+* 8 GB / 4 CPUs
+* 160 GB SSD Disk
+* 5 TB transfer
+
 ## Update and upgrade
 
 ```bash
