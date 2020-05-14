@@ -25,6 +25,7 @@ Ubuntu 18.04.3 (LTS) x64
 ```bash
 apt-get update -y
 apt-get upgrade -y
+sudo reboot
 ```
 
 ## Install zsh and oh-my-zsh
