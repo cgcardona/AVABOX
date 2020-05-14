@@ -91,6 +91,12 @@ tmux new -s ava-infra
 ./build/ava
 ```
 
+We need to create a validating key for our node so that our node can be identified on the platform chain. We can create a randomly generated tls certificate for this. This is for starting the node and becoming a validator.
+
+A key/cert pair are auto generated the first time the node is started with no key/cert passed in. The key/cert are located at `~/.gecko/staking/staker.crt` and `~/.gecko/staking/staker.key`.
+
+You can also specify your own key/cert locations using the `staking-tls-cert-file` and `staking-tls-key-file` params.
+
 ## Confirm the full node has peers
 
 ```bash
