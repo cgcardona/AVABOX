@@ -85,6 +85,7 @@ cd $GOPATH/src/github.com/ava-labs/gecko
 
 ```bash
 tmux new -s ava-infra
+zsh
 ```
 
 ## Connect to the Public Testnet
