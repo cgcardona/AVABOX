@@ -32,8 +32,7 @@ sudo reboot
 
 ```bash
 sudo apt-get install git curl build-essential libssl-dev libuv1-dev cmake make g++ zsh -y
-yes Y | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-zsh
+yes Y | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && zsh
 ```
 
 ## Install golang
@@ -78,8 +77,7 @@ cd $GOPATH/src/github.com/ava-labs/gecko
 ## Create new tmux session
 
 ```bash
-tmux new -s ava-infra
-zsh
+tmux new -s ava-infra && zsh
 ```
 
 ## Connect to the Public Testnet
