@@ -1,6 +1,6 @@
 # AVABOX
 
-AVA is an open-source platform for launching highly decentralized applications, financial primitives, and interoperable blockchains.
+[AVA](https://www.avalabs.org) is an open-source platform for launching highly decentralized applications, financial primitives, and interoperable blockchains.
 
 AVABOX repo is a playground for exploring the AVA platform including the [slopes](https://github.com/ava-labs/slopes) lib.
 
@@ -65,7 +65,7 @@ cat wallet.json
 
 ## Running your own full node
 
-AVABOX requires a full node. [Here are the steps](https://gist.github.com/cgcardona/4a5c9d0dbe7fdbe6ffce77fa05e9e580) for firing up your own AVA full node.
+AVABOX requires a full node. [Here are the steps](./docs/steps-for-firing-up-a-full-node.md) for firing up your own AVA full node.
 
 ## More Info
 
