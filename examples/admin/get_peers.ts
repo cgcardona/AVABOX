@@ -1,4 +1,5 @@
 import { AVABOX } from '../../src/AVABOX'
+import { Admin } from '../../src/Admin'
 import { Config } from '../../src/interfaces/config_interface'
 
 const main = async (): Promise<any> => {
@@ -10,7 +11,7 @@ const main = async (): Promise<any> => {
 
   }
   const avabox: AVABOX = new AVABOX(config)
-  const Admin = avabox.Admin
+  const Admin: Admin = avabox.Admin
   const peers: string[] = await Admin.getPeers()
   console.log(peers)
 }
