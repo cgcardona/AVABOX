@@ -5,6 +5,15 @@ export class Keystore {
   config: IConfig
   url: string
 
+  /**
+  * Creates a new Keystore instance.
+  * 
+  * @param config Configuration object with 
+  *   * networkId
+  *   * fullNodeHost
+  *   * fullNodePort
+  *   * fullNodeProtocol
+  */
   constructor(config: IConfig = {
     networkId: 12345,
     fullNodeHost: "localhost",

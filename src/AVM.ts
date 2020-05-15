@@ -5,6 +5,15 @@ export class AVM {
   config: IConfig
   url: string
 
+  /**
+  * Creates a new AVM instance.
+  * 
+  * @param config Configuration object with 
+  *   * networkId
+  *   * fullNodeHost
+  *   * fullNodePort
+  *   * fullNodeProtocol
+  */
   constructor(config: IConfig = {
     networkId: 12345,
     fullNodeHost: 'localhost',

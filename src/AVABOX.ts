@@ -12,15 +12,16 @@ export class AVABOX {
   public CChain: CChain
   public Admin: Admin
 
+  /**
+  * Creates a new AVABOX instance.
+  * 
+  * @param config Configuration object with 
+  *   * networkId
+  *   * fullNodeHost
+  *   * fullNodePort
+  *   * fullNodeProtocol
+  */
   constructor(config: IConfig = {
-    // TODO - Get comment docs working
-    /**
-    * foo, bar, baz
-    * 
-    * @param stuff lorem ipsum
-    * 
-    * @returns dolar set amit
-    */
     networkId: 12345,
     fullNodeHost: "localhost",
     fullNodePort: 9650,
