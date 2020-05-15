@@ -1,7 +1,6 @@
 import { IConfig } from "./interfaces"
 import axios, { AxiosResponse } from "axios"
 
-
 export class Admin {
   config: IConfig
   url: string
@@ -21,6 +20,20 @@ export class Admin {
       jsonrpc: "2.0",
       id: 3,
       method: "admin.getNodeID",
+      params: {}
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return response.data.result.nodeID
+  }
+  
+  async getNetworkID(): Promise<string> {
+    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
+      jsonrpc: "2.0",
+      id: 3,
+      method: "admin.getNetworkID",
       params: {}
     }, {
       headers: {
