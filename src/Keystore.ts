@@ -28,12 +28,12 @@ export class Keystore {
   }
   
   /**
-  * Creates a user in the node's database.
+  * Create a user
   * 
-  * @param username Name of the user to create
-  * @param password Password for the user
+  * @param username
+  * @param password
   * 
-  * @returns Promise for a boolean with true on success
+  * @returns success
   */
   async createUser(username: string, password: string): Promise<boolean> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
@@ -54,12 +54,12 @@ export class Keystore {
   }
 
   /**
-  * Exports a user. The user can be imported to another node with keystore.importUser .
+  * Export a user
   * 
-  * @param username The name of the user to export
-  * @param password The password of the user to export
+  * @param username
+  * @param password
   * 
-  * @returns Promise with a string importable using importUser
+  * @returns user
   */
   async exportUser(username: string, password: string): Promise<string> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
@@ -82,21 +82,21 @@ export class Keystore {
   /**
   * Imports a user file into the node's user database and assigns it to a username.
   * 
-  * @param username The name the user file should be imported into
-  * @param user AVA serialized string represetning a user's data
-  * @param password The user's password
+  * @param username
+  * @param password
+  * @param user
   * 
-  * @returns A promise with a true-value on success.
+  * @returns success.
   */
-  async importUser(username: string, user: string ,password: string): Promise<boolean> {
+  async importUser(username: string ,password: string, user: string): Promise<boolean> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
       jsonrpc: "2.0",
       id: 1,
       method: "keystore.importUser",
       params: {
         "username": username,
-        "user": user,
-        "password": password
+        "password": password,
+        "user": user
       }
     }, {
       headers: {
@@ -108,9 +108,9 @@ export class Keystore {
   }
 
   /**
-  * Lists the names of all users on the node.
+  * List users
   * 
-  * @returns Promise of an array with all user names.
+  * @returns users
   */
   async listUsers(): Promise<string[]> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {

@@ -76,6 +76,8 @@ AVABOX requires a full node. [Here are the steps](https://gist.github.com/cgcard
 
 The ever amazing [Chris @Trout Troutner](https://twitter.com/christroutner) inspired me to do a deep dive on AVA. His [ava-examples](https://github.com/christroutner/ava-examples) repo was the inpiration for this work.
 
+This library is influenced by [Slopes](https://github.com/ava-labs/slopes) from [AVA Labs](https://www.avalabs.org) but is not a direct fork. However that library deserves credit.
+
 ## License
 
 AVABOX is licensed under the [MIT Open Source License](./LICENSE)

@@ -26,15 +26,71 @@ export class Platform {
     this.config = config
     this.url = `${this.config.fullNodeProtocol}://${this.config.fullNodeHost}:${this.config.fullNodePort}`
   }
+
+  /**
+  * Creates a blockchain.
+  * 
+  * @param vmID
+  * @param name
+  * @param payerNonce
+  * @param genesis
+  * @param subnetID Optional
+  * 
+  * @returns blockchainID
+  */
+  async createBlockchain(vmID: string, name: string, payerNonce: number, genesis: string, subnetID: string = ""): Promise<string> {
+    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "platform.createBlockchain",
+      params: {
+        "vmID": vmID,
+        "name": name,
+        "payerNonce": payerNonce,
+        "genesisData": genesis,
+        "subnetID": subnetID
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    return response.data.result.blockchainID
+  }
+
+  /**
+  * Get blockchain status
+  * 
+  * @param blockchainID
+  * 
+  * @returns status
+  */
+  async getBlockchainStatus(blockchainID: string): Promise<string> {
+    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "platform.getBlockchainStatus",
+      params: {
+        "blockchainID": blockchainID
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    return response.data.result.status
+  }
   
   /**
-  * The P-Chain uses an account model. This method creates a P-Chain account on an existing user in the Keystore.
+  * Create account
   * 
-  * @param username The username of the Keystore user that controls the new account
-  * @param password The password of the Keystore user that controls the new account
-  * @param privateKey The private key that controls the account. If omitted, a new private key is generated
+  * @param username
+  * @param password
+  * @param privateKey
   * 
-  * @returns Promise for a string of the newly created account address.
+  * @returns address
   */
   async createAccount(username: string, password: string): Promise<string> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
@@ -55,14 +111,14 @@ export class Platform {
   }
   
   /**
-  * Send AVA from an account on the P-Chain to an address on the X-Chain. This transaction must be signed with the key of the account that the AVA is sent from and which pays the transaction fee. After issuing this transaction, you must call the X-Chain’s importAVA method to complete the transfer.
+  * Import AVA
   * 
-  * @param to The ID of the account the AVA is sent to. This must be the same as the to argument in the corresponding call to the X-Chain’s exportAVA
-  * @param payerNonce The next unused nonce of the account specified in `to`
-  * @param username The Keystore user that controls the account specified in `to`
-  * @param password The password of the Keystore user
+  * @param to
+  * @param payerNonce
+  * @param username
+  * @param password
   * 
-  * @returns Promise for a string for the transaction, which should be sent to the network by calling issueTx.
+  * @returns txID
   */
   async importAVA(to: string, amount: number, payerNonce: number, username: string, password: string): Promise<object> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
@@ -82,15 +138,15 @@ export class Platform {
       }
     })
 
-    return response.data.result.validators
+    return response.data.result.txID
   }
   
   /**
-  * Issue a transaction to the Platform Chain. 
+  * Issue transaction
   *  
-  * @param tx The base 58 (with checksum) representation of a transaction
+  * @param tx
   * 
-  * @returns Promise for an string of the transaction after being signed.
+  * @returns txID
   */
   async issueTx(tx: string): Promise<string> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
@@ -110,13 +166,13 @@ export class Platform {
   }
 
   /**
-  * The P-Chain uses an account model. An account is identified by an address. This method returns the account with the given address.
+  * Get account
   * 
-  * @param address The address of the account
+  * @param address
   * 
-  * @returns Promise for an object containing the address, the nonce, and the balance.
+  * @returns result
   */
-  async getAccount(address: string, assetID: string): Promise<any> {
+  async getAccount(address: string, assetID: string): Promise<object> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
       jsonrpc: "2.0",
       id: 1,
@@ -135,18 +191,44 @@ export class Platform {
   }
 
   /**
-  * Add a validator to the Default Subnet.
+  * List accounts
   * 
-  * @param id The node ID of the validator
-  * @param startTime Javascript Date object for the start time to validate 
-  * @param endTime Javascript Date object for the end time to validate 
-  * @param stakeAmount The amount of nAVA the validator is staking as a {@link https://github.com/indutny/bn.js/|BN}
-  * @param payerNonce The next unused nonce of the account that is providing the staked AVA and paying the transaction fee
-  * @param destination The P-Chain address of the account that the staked AVA will be returned to, as well as a validation reward if the validator is sufficiently responsive and correct while it validated
-  * @param delegationFeeRate Optional. The percent fee this validator charges when others delegate stake to them, multiplied by 10,000 as a {@link https://github.com/indutny/bn.js/|BN}. For example, suppose a validator has delegationFeeRate 300,000 and someone delegates to that validator. When the delegation period is over, if the delegator is entitled to a reward, 30% of the reward (300,000 / 10,000) goes to the validator and 70% goes to the delegator
-  * @param subnetID Optional. Either a {@link https://github.com/feross/buffer|Buffer} or an AVA serialized string for the SubnetID or its alias.
+  * @param username
+  * @param password
   * 
-  * @returns Promise for a base58 string of the unsigned transaction.
+  * @returns accounts
+  */
+  async listAccounts(username: string, password: string): Promise<object[]> {
+    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "platform.listAccounts",
+      params: {
+        "username": username,
+        "password": password
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    return response.data.accounts
+  }
+
+  /**
+  * Add a default subnet validator
+  * 
+  * @param id
+  * @param startTime
+  * @param endTime
+  * @param stakeAmount
+  * @param payerNonce
+  * @param destination
+  * @param delegationFeeRate Optional
+  * @param subnetID Optional
+  * 
+  * @returns unsignedTx
   */
   async addDefaultSubnetValidator(id: string, destination: string, stakeAmount: number, startTime: number, endTime: number, payerNonce: number): Promise<string> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
@@ -171,16 +253,49 @@ export class Platform {
   }
 
   /**
-  * Sign an unsigned or partially signed transaction. 
+  * Add a non default subnet validator
   * 
-  * Transactions to add non-default Subnets require signatures from control keys and from the account paying the transaction fee. If `signer` is a control key and the transaction needs more signatures from control keys, `sign` will provide a control signature. Otherwise, `signer` will sign to pay the transaction fee.
+  * @param id
+  * @param subnetID
+  * @param startTime
+  * @param endTime
+  * @param weight
+  * @param payerNonce
   * 
-  * @param tx The unsigned/partially signed transaction
-  * @param signer The address of the key signing `tx`
-  * @param username The Keystore user that controls the key signing `tx`
-  * @param password The password of the Keystore user
+  * @returns unsignedTx
+  */
+  async addNonDefaultSubnetValidator(id:string, subnetID:Buffer | string, startTime:Date, endTime:Date, weight:number, payerNonce:number): Promise<string> {
+    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "platform.addNonDefaultSubnetValidator",
+      params: {
+        "id": id,
+        "subnet": subnetID,
+        "startTime": startTime.getTime()/1000,
+        "endTime": endTime.getTime()/1000,
+        "weight": weight,
+        "payerNonce": Math.floor(payerNonce),
+        "subnetID": subnetID
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    return response.data.result.unsignedTx
+  }
+
+  /**
+  * Sign
   * 
-  * @returns Promise for an string of the transaction after being signed.
+  * @param tx
+  * @param signer
+  * @param username
+  * @param password
+  * 
+  * @returns tx
   */
   async sign(tx: string, signer: string, username: string, password: string): Promise<string> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
@@ -203,18 +318,19 @@ export class Platform {
   }
 
   /**
-  * Lists the set of pending validators.
+  * Get pending validators
   * 
-  * @param subnetID Optional. Either a {@link https://github.com/feross/buffer|Buffer} or an AVA serialized string for the SubnetID or its alias.
+  * @param subnetID Optional
   * 
-  * @returns Promise for an array of validators that are pending staking, see: {@link https://docs.ava.network/v1.0/en/api/platform/#platformgetpendingvalidators|platform.getPendingValidators documentation}.
+  * @returns validators
   * 
   */
   async getPendingValidators(): Promise<object[]> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
       jsonrpc: "2.0",
       id: 1,
-      method: "platform.getPendingValidators"
+      method: "platform.getPendingValidators",
+      params: {}
     }, {
       headers: {
         'Content-Type': 'application/json'
@@ -225,11 +341,37 @@ export class Platform {
   }
 
   /**
-  * Lists the set of current validators.
+  * Sample validators
   * 
-  * @param subnetID Optional. Either a {@link https://github.com/feross/buffer|Buffer} or an AVA serialized string for the SubnetID or its alias.
+  * @param size
+  * @param subnetID Optional
   * 
-  * @returns Promise for an array of validators that are currently staking, see: {@link https://docs.ava.network/v1.0/en/api/platform/#platformgetcurrentvalidators|platform.getCurrentValidators documentation}.
+  * @returns validators
+  */
+  async sampleValidators(size: number, subnetID: string = ""): Promise<string[]> {
+    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "platform.sampleValidators",
+      params: {
+        "size": size,
+        "subnetID": subnetID
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    return response.data.result.validators
+  }
+
+  /**
+  * Get current validators
+  * 
+  * @param subnetID Optional
+  * 
+  * @returns validators
   * 
   */
   async getCurrentValidators(): Promise<object[]> {
