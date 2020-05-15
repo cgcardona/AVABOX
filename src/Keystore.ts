@@ -27,6 +27,14 @@ export class Keystore {
     this.url = `${this.config.fullNodeProtocol}://${this.config.fullNodeHost}:${this.config.fullNodePort}`
   }
   
+  /**
+  * Creates a user in the node's database.
+  * 
+  * @param username Name of the user to create
+  * @param password Password for the user
+  * 
+  * @returns Promise for a boolean with true on success
+  */
   async createUser(username: string, password: string): Promise<boolean> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
       jsonrpc: "2.0",

@@ -27,6 +27,11 @@ export class Admin {
     this.url = `${this.config.fullNodeProtocol}://${this.config.fullNodeHost}:${this.config.fullNodePort}`
   }
   
+  /**
+  * Get node ID
+  * 
+  * @returns node ID as a string
+  */
   async getNodeID(): Promise<string> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
@@ -41,6 +46,11 @@ export class Admin {
     return response.data.result.nodeID
   }
   
+  /**
+  * Get network ID
+  * 
+  * @returns network ID as a string
+  */
   async getNetworkID(): Promise<string> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
@@ -55,6 +65,11 @@ export class Admin {
     return response.data.result.nodeID
   }
   
+  /**
+  * Get peers
+  * 
+  * @returns array of ip addresses as strings
+  */
   async getPeers(): Promise<string[]> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
@@ -70,6 +85,13 @@ export class Admin {
     return response.data.result.peers
   }
   
+  /**
+  * Get chain aliases
+  * 
+  * @param chainID the chain ID
+  * 
+  * @returns Aliases as an array of strings
+  */
   async getChainAliases(chainID: string): Promise<string[]> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
@@ -86,7 +108,14 @@ export class Admin {
 
     return response.data.result.Aliases
   }
-  
+
+  /**
+  * Start CPU Profiler
+  * 
+  * @param filename the filename
+  * 
+  * @returns True on success, false on failure
+  */
   async startCPUProfiler(filename: string): Promise<boolean> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
@@ -104,6 +133,11 @@ export class Admin {
     return response.data.result.success
   }
   
+  /**
+  * Stop CPU Profiler
+  * 
+  * @returns True on success, false on failure
+  */
   async stopCPUProfiler(): Promise<boolean> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
@@ -118,6 +152,13 @@ export class Admin {
     return response.data.result.success
   }
   
+  /**
+  * Memory Profile
+  * 
+  * @param filename the filename
+  * 
+  * @returns True on success, false on failure
+  */
   async memoryProfile(filename: string): Promise<boolean> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
@@ -135,6 +176,13 @@ export class Admin {
     return response.data.result.success
   }
   
+  /**
+  * Lock Profile
+  * 
+  * @param filename the filename
+  * 
+  * @returns True on success, false on failure
+  */
   async lockProfile(filename: string): Promise<boolean> {
     const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
       jsonrpc: "2.0",
