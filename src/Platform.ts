@@ -2,7 +2,7 @@
  * @module Platform
  */
 import { IConfig } from "./interfaces"
-import axios, { AxiosResponse } from "axios"
+import { AxiosResponse } from "axios"
 import { httpRequest } from "./AVM"
 
 export class Platform {

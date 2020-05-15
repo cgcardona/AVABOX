@@ -2,7 +2,6 @@
  * @module AVABOX
  */
 import { Wallet } from "./Wallet"
-import { XChain } from "./XChain"
 import { PChain } from "./PChain"
 import { CChain } from "./CChain"
 import { Admin } from "./Admin"
@@ -10,7 +9,6 @@ import { IConfig } from "./interfaces"
 
 export class AVABOX {
   public Wallet: Wallet
-  public XChain: XChain
   public PChain: PChain
   public CChain: CChain
   public Admin: Admin
@@ -31,7 +29,6 @@ export class AVABOX {
     fullNodeProtocol: "http"
   }) {
     this.Wallet = new Wallet(config)
-    this.XChain = new XChain(config)
     this.PChain = new PChain(config)
     this.CChain = new CChain(config)
     this.Admin = new Admin(config)

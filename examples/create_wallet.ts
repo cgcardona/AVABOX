@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as slopes from "slopes";
-import { AVABOX } from "./AVABOX"
-import { Wallet } from "./Wallet"
+import { AVABOX } from "../src/AVABOX"
+import { Wallet } from "../src/Wallet"
 
 let main= (): any => {
   const avabox: AVABOX = new AVABOX()

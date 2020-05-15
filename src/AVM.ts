@@ -52,7 +52,7 @@ export class AVM {
   * 
   * @returns balance
   */
-  async getBalance(address: string, assetID: string = 'AVA'): Promise<string> {
+  async getBalance(address: string, assetID: string = 'AVA'): Promise<number> {
     const response: AxiosResponse = await httpRequest(`${this.url}/ext/X`, 'avm.getBalance', {
       address: address,
       assetID: assetID

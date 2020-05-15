@@ -1,4 +1,4 @@
-import { AVABOX } from '../src/AVABOX'
+import { AVM } from '../src/AVM'
 import { Config } from '../src/interfaces/config_interface'
 
 const main = async (): Promise<any> => {
@@ -9,11 +9,10 @@ const main = async (): Promise<any> => {
     networkId: 12345
 
   }
-  const avabox: AVABOX = new AVABOX(config)
-  const XChain = avabox.XChain
+  const avm: AVM = new AVM(config)
   const address: string =  'X-GzNySBE2zK7cLoGhFGUZoZg57x689L6J7'
-  const assetId: string = '2BKo2z3qnMhUNFdD2nkMMGT4iV5QCZwRuBeegyXejbhG1JCp8j'
-  const balance: Promise<number> = await XChain.getBalance(address, assetId)
+  const assetID: string = '2BKo2z3qnMhUNFdD2nkMMGT4iV5QCZwRuBeegyXejbhG1JCp8j'
+  const balance: number = await avm.getBalance(address, assetID)
   console.log(balance)
 }
 
