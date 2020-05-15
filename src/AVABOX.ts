@@ -1,3 +1,6 @@
+/**
+ * @module AVABOX
+ */
 import { Wallet } from "./Wallet"
 import { XChain } from "./XChain"
 import { PChain } from "./PChain"

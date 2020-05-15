@@ -1,3 +1,6 @@
+/**
+ * @module AVM
+ */
 import { IConfig } from './interfaces'
 import axios, { AxiosResponse } from 'axios'
 

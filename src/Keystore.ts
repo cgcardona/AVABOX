@@ -1,3 +1,6 @@
+/**
+ * @module Keystore
+ */
 import { IConfig } from "./interfaces"
 import axios, { AxiosResponse } from "axios"
 

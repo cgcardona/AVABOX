@@ -1,3 +1,6 @@
+/**
+ * @module Platform
+ */
 import { IConfig } from "./interfaces"
 import axios, { AxiosResponse } from "axios"
 
