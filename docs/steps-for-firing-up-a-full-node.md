@@ -28,10 +28,10 @@ apt-get upgrade -y
 sudo reboot
 ```
 
-## Install zsh and oh-my-zsh
+## Install AVA deps and oh-my-zsh
 
 ```bash
-apt-get install zsh -y
+sudo apt-get install git curl build-essential libssl-dev libuv1-dev cmake make g++ zsh -y
 yes Y | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 zsh
 ```
@@ -60,12 +60,6 @@ export GOPATH=$HOME/go
 
 ```bash
 source ~/.zshrc
-```
-
-## Install AVA deps
-
-```bash
-sudo apt-get install git curl build-essential libssl-dev libuv1-dev cmake make g++ -y
 ```
 
 ## Clone the Gecko rep
