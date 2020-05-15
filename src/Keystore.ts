@@ -3,6 +3,7 @@
  */
 import { IConfig } from "./interfaces"
 import axios, { AxiosResponse } from "axios"
+import { httpRequest } from "./AVM"
 
 export class Keystore {
   config: IConfig
@@ -36,18 +37,9 @@ export class Keystore {
   * @returns success
   */
   async createUser(username: string, password: string): Promise<boolean> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "keystore.createUser",
-      params: {
-        "username": username,
-        "password": password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/keystore`, 'keystore.createUser', {
+      username: username,
+      password: password
     })
 
     return response.data.result.success
@@ -62,18 +54,9 @@ export class Keystore {
   * @returns user
   */
   async exportUser(username: string, password: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "keystore.exportUser",
-      params: {
-        "username": username,
-        "password": password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/keystore`, 'keystore.exportUser', {
+      username: username,
+      password: password
     })
 
     return response.data.result.user
@@ -89,19 +72,10 @@ export class Keystore {
   * @returns success.
   */
   async importUser(username: string ,password: string, user: string): Promise<boolean> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "keystore.importUser",
-      params: {
-        "username": username,
-        "password": password,
-        "user": user
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/keystore`, 'keystore.importUser', {
+      username: username,
+      password: password,
+      user: user
     })
 
     return response.data.result.success
@@ -113,16 +87,7 @@ export class Keystore {
   * @returns users
   */
   async listUsers(): Promise<string[]> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/keystore`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "keystore.listUsers",
-      params: {}
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/keystore`, 'keystore.listUsers', {})
 
     return response.data.result.users
   }

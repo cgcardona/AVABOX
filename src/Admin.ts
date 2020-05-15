@@ -3,6 +3,7 @@
  */
 import { IConfig } from "./interfaces"
 import axios, { AxiosResponse } from "axios"
+import { httpRequest } from "./AVM"
 
 export class Admin {
   config: IConfig
@@ -33,16 +34,8 @@ export class Admin {
   * @returns nodeID
   */
   async getNodeID(): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.getNodeID",
-      params: {}
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.getNodeID', {})
+
     return response.data.result.nodeID
   }
   
@@ -52,16 +45,8 @@ export class Admin {
   * @returns networkID
   */
   async getNetworkID(): Promise<number> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.getNetworkID",
-      params: {}
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.getNetworkID', {})
+
     return response.data.result.networkID
   }
   
@@ -71,16 +56,7 @@ export class Admin {
   * @returns peers
   */
   async getPeers(): Promise<string[]> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.peers",
-      params: {}
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.peers', {})
 
     return response.data.result.peers
   }
@@ -93,17 +69,8 @@ export class Admin {
   * @returns Aliases 
   */
   async getChainAliases(chainID: string): Promise<string[]> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.getChainAliases",
-      params: {
-        "ChainID": chainID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.getChainAliases', {
+      ChainID: chainID
     })
 
     return response.data.result.Aliases
@@ -117,17 +84,8 @@ export class Admin {
   * @returns success
   */
   async startCPUProfiler(filename: string): Promise<boolean> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.startCPUProfiler",
-      params: {
-        "filename": filename
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.startCPUProfiler', {
+      filename: filename
     })
 
     return response.data.result.success
@@ -139,15 +97,7 @@ export class Admin {
   * @returns success
   */
   async stopCPUProfiler(): Promise<boolean> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.stopCPUProfiler"
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.stopCPUProfiler', {})
 
     return response.data.result.success
   }
@@ -160,17 +110,8 @@ export class Admin {
   * @returns success
   */
   async memoryProfile(filename: string): Promise<boolean> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.memoryProfile",
-      params: {
-        "filename": filename
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.memoryProfile', {
+      filename: filename
     })
 
     return response.data.result.success
@@ -184,17 +125,8 @@ export class Admin {
   * @returns success
   */
   async lockProfile(filename: string): Promise<boolean> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/admin`, {
-      jsonrpc: "2.0",
-      id: 3,
-      method: "admin.lockProfile",
-      params: {
-        "filename": filename
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/admin`, 'admin.lockProfile', {
+      filename: filename
     })
 
     return response.data.result.success

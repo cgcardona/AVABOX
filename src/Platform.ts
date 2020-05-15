@@ -3,6 +3,7 @@
  */
 import { IConfig } from "./interfaces"
 import axios, { AxiosResponse } from "axios"
+import { httpRequest } from "./AVM"
 
 export class Platform {
   config: IConfig
@@ -39,21 +40,12 @@ export class Platform {
   * @returns blockchainID
   */
   async createBlockchain(vmID: string, name: string, payerNonce: number, genesis: string, subnetID: string = ""): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.createBlockchain",
-      params: {
-        "vmID": vmID,
-        "name": name,
-        "payerNonce": payerNonce,
-        "genesisData": genesis,
-        "subnetID": subnetID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.createBlockchain', {
+      vmID: vmID,
+      name: name,
+      payerNonce: payerNonce,
+      genesisData: genesis,
+      subnetID: subnetID
     })
 
     return response.data.result.blockchainID
@@ -67,17 +59,8 @@ export class Platform {
   * @returns status
   */
   async getBlockchainStatus(blockchainID: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.getBlockchainStatus",
-      params: {
-        "blockchainID": blockchainID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.getBlockchainStatus', {
+      blockchainID: blockchainID
     })
 
     return response.data.result.status
@@ -92,19 +75,11 @@ export class Platform {
   * 
   * @returns address
   */
-  async createAccount(username: string, password: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.createAccount",
-      params: {
-        "username": username,
-        "password": password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+  async createAccount(username: string, password: string, privateKey: string): Promise<string> {
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.createAccount', {
+      username: username,
+      password: password,
+      privateKey: privateKey
     })
 
     return response.data.result.address
@@ -121,21 +96,12 @@ export class Platform {
   * @returns txID
   */
   async importAVA(to: string, amount: number, payerNonce: number, username: string, password: string): Promise<object> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.importAVA",
-      params: {
-        "to": to,
-        "amount": amount,
-        "payerNonce": payerNonce,
-        "username": username,
-        "password": password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.importAVA', {
+      to: to,
+      amount: amount,
+      payerNonce: payerNonce,
+      username: username,
+      password: password
     })
 
     return response.data.result.txID
@@ -149,17 +115,8 @@ export class Platform {
   * @returns txID
   */
   async issueTx(tx: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.issueTx",
-      params: {
-        "tx": tx
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.issueTx', {
+      tx: tx
     })
 
     return response.data.result.txID
@@ -173,18 +130,9 @@ export class Platform {
   * @returns result
   */
   async getAccount(address: string, assetID: string): Promise<object> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.getAccount",
-      params: {
-        "address": address,
-        "assetID": assetID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.getAccount', {
+      address: address,
+      assetID: assetID
     })
 
     return response.data.result
@@ -199,18 +147,9 @@ export class Platform {
   * @returns accounts
   */
   async listAccounts(username: string, password: string): Promise<object[]> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.listAccounts",
-      params: {
-        "username": username,
-        "password": password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.listAccounts', {
+      username: username,
+      password: password
     })
 
     return response.data.accounts
@@ -231,22 +170,13 @@ export class Platform {
   * @returns unsignedTx
   */
   async addDefaultSubnetValidator(id: string, destination: string, stakeAmount: number, startTime: number, endTime: number, payerNonce: number): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.addDefaultSubnetValidator",
-      params: {
-        "id": id,
-        "destination": destination,
-        "stakeAmount": stakeAmount,
-        "startTime": startTime,
-        "endTime": endTime,
-        "payerNonce": payerNonce
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.addDefaultSubnetValidator', {
+      id: id,
+      destination: destination,
+      stakeAmount: stakeAmount,
+      startTime: startTime,
+      endTime: endTime,
+      payerNonce: payerNonce
     })
 
     return response.data.result.unsignedTx
@@ -265,23 +195,14 @@ export class Platform {
   * @returns unsignedTx
   */
   async addNonDefaultSubnetValidator(id:string, subnetID:Buffer | string, startTime:Date, endTime:Date, weight:number, payerNonce:number): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.addNonDefaultSubnetValidator",
-      params: {
-        "id": id,
-        "subnet": subnetID,
-        "startTime": startTime.getTime()/1000,
-        "endTime": endTime.getTime()/1000,
-        "weight": weight,
-        "payerNonce": Math.floor(payerNonce),
-        "subnetID": subnetID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.addNonDefaultSubnetValidator', {
+      id: id,
+      subnet: subnetID,
+      startTime: startTime.getTime()/1000,
+      endTime: endTime.getTime()/1000,
+      weight: weight,
+      payerNonce: Math.floor(payerNonce),
+      subnetID: subnetID
     })
 
     return response.data.result.unsignedTx
@@ -298,20 +219,11 @@ export class Platform {
   * @returns tx
   */
   async sign(tx: string, signer: string, username: string, password: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.sign",
-      params: {
-        "tx": tx,
-        "signer": signer,
-        "username": username,
-        "password": password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.sign', {
+      tx: tx,
+      signer: signer,
+      username: username,
+      password: password
     })
 
     return response.data.result.tx
@@ -326,16 +238,7 @@ export class Platform {
   * 
   */
   async getPendingValidators(): Promise<object[]> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.getPendingValidators",
-      params: {}
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.getPendingValidators', {})
 
     return response.data.result.validators
   }
@@ -349,18 +252,9 @@ export class Platform {
   * @returns validators
   */
   async sampleValidators(size: number, subnetID: string = ""): Promise<string[]> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.sampleValidators",
-      params: {
-        "size": size,
-        "subnetID": subnetID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.sampleValidators', {
+      size: size,
+      subnetID: subnetID
     })
 
     return response.data.result.validators
@@ -375,15 +269,7 @@ export class Platform {
   * 
   */
   async getCurrentValidators(): Promise<object[]> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/P`, {
-      jsonrpc: "2.0",
-      id: 1,
-      method: "platform.getCurrentValidators"
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/P`, 'platform.getCurrentValidators', {})
 
     return response.data.result.validators
   }

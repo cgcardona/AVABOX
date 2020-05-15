@@ -36,18 +36,9 @@ export class AVM {
   * @returns address
   */
   async createAddress(username: string, password: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/bc/X`, {
-      jsonrpc: '2.0',
-      id: 1,
-      method: 'avm.createAddress',
-      params: {
-        'username': username,
-        'password': password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/X`, 'avm.createAddress', {
+      username: username,
+      password: password
     })
 
     return response.data.result.address
@@ -62,18 +53,9 @@ export class AVM {
   * @returns balance
   */
   async getBalance(address: string, assetID: string = 'AVA'): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/bc/X`, {
-      jsonrpc: '2.0',
-      id: 1,
-      method: 'avm.getBalance',
-      params: {
-        'address': address,
-        'assetID': assetID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/X`, 'avm.getBalance', {
+      address: address,
+      assetID: assetID
     })
 
     return response.data.result.balance
@@ -90,20 +72,11 @@ export class AVM {
   * @returns txID
   */
   async exportAVA(to: string, amount: string = 'AVA', username: string, password: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/bc/X`, {
-      jsonrpc: '2.0',
-      id: 1,
-      method: 'avm.exportAVA',
-      params: {
-        'to': to,
-        'amount': amount,
-        'username': username,
-        'password': password
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/X`, 'avm.exportAVA', {
+      to: to,
+      amount: amount,
+      username: username,
+      password: password
     })
 
     return response.data.result.txID
@@ -117,19 +90,29 @@ export class AVM {
   * @returns status
   */
   async getTxStatus(txID: string): Promise<string> {
-    const response: AxiosResponse = await axios.post(`${this.url}/ext/bc/X`, {
-      jsonrpc: '2.0',
-      id: 1,
-      method: 'avm.getTxStatus',
-      params: {
-        'txID': txID
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    const response: AxiosResponse = await httpRequest(`${this.url}/ext/X`, 'avm.getTxStatus', {
+      txID: txID
     })
 
     return response.data.result.status
   }
+}
+
+/**
+* 
+* @ignore
+* 
+*/
+export const httpRequest = async (url: string, method: string, params: object): Promise<any> => {
+  const response: AxiosResponse = await axios.post(url, {
+    jsonrpc: '2.0',
+    id: 1,
+    method: method,
+    params: params
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response
 }
